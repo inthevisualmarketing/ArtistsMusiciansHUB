@@ -1,0 +1,14 @@
+﻿{
+  "name": "artists-musicians-hub",
+  "version": "1.0.0",
+  "description": "Artists Musicians HUB - Rebuilt on Fly.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "echo \"Tests coming soon\""
+  },
+  "keywords": ["artists", "musicians", "hub", "san-antonio"],
+  "author": "Markell Holland",
+  "license": "MIT"
+}
