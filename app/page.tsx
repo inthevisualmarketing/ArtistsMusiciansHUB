@@ -34,8 +34,8 @@ function ElectricGrid() {
     }
 
     function createPulse() {
-      const cols = Math.floor(canvas.width / GRID);
-      const rows = Math.floor(canvas.height / GRID);
+      const cols = Math.floor(canvas!.width / GRID);
+      const rows = Math.floor(canvas!.height / GRID);
       const col = Math.floor(Math.random() * cols);
       const row = Math.floor(Math.random() * rows);
       const dir = pickDir(col, row, null, cols, rows);
