@@ -204,10 +204,10 @@ export default function ComingSoon() {
         {/* Logo */}
         <div style={s.logoWrap}>
           <Image
-            src="https://res.cloudinary.com/dbpremci4/image/upload/w_120,h_120,c_fit/white-hub-logo"
+            src="https://res.cloudinary.com/dbpremci4/image/upload/w_140,h_140,c_fit/purple-hub-logo-transparent_idyl0z"
             alt="Artists Musicians Hub"
-            width={120}
-            height={120}
+            width={140}
+            height={140}
             priority
             style={s.logo}
           />
