@@ -13,14 +13,14 @@ export async function POST(req: NextRequest) {
     const TO_EMAIL = "artists.musicians.hub@gmail.com";
 
     if (!MAILGUN_API_KEY || !MAILGUN_DOMAIN) {
-      console.error("Mailgun env vars missing");
+      console.error("Mailgun env vars missing — check FLY secrets");
       return NextResponse.json({ error: "Server config error" }, { status: 500 });
     }
 
     const form = new URLSearchParams({
       from: `AMH Signups <noreply@${MAILGUN_DOMAIN}>`,
       to: TO_EMAIL,
-      subject: `🎵 New AMH Signup: ${email}`,
+      subject: `New AMH Signup: ${email}`,
       text: `New early access signup:\n\nEmail: ${email}\nTime: ${new Date().toLocaleString("en-US", { timeZone: "America/Chicago" })} CST\n\nAMH Launch System`,
     });
 
@@ -37,14 +37,19 @@ export async function POST(req: NextRequest) {
     );
 
     if (!response.ok) {
-      const err = await response.text();
-      console.error("Mailgun error:", err);
-      return NextResponse.json({ error: "Failed to send" }, { status: 500 });
+      const errText = await response.text();
+      console.error(`Mailgun failed — status: ${response.status}`);
+      console.error(`Mailgun response: ${errText}`);
+      console.error(`Domain used: ${MAILGUN_DOMAIN}`);
+      return NextResponse.json(
+        { error: `Mailgun error ${response.status}: ${errText}` },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Subscribe error:", err);
+    console.error("Subscribe route error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
