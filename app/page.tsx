@@ -7,7 +7,7 @@ const GRID = 40;
 function ElectricGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = canvasRef.current as HTMLCanvasElement;
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     let animId: number;
