@@ -298,7 +298,7 @@ export default function ComingSoon() {
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
         @keyframes gridScroll { from{background-position:center 0px} to{background-position:center 60px} }
-        @keyframes logoPulse { 0%,100%{filter:drop-shadow(0 0 8px rgba(0,255,65,0.4))} 50%{filter:drop-shadow(0 0 20px rgba(0,255,65,0.8))} }
+        @keyframes logoPulse { 0%,100%{filter:brightness(0) saturate(100%) invert(57%) sepia(98%) saturate(400%) hue-rotate(80deg) brightness(1.05) drop-shadow(0 0 6px rgba(0,255,65,0.4))} 50%{filter:brightness(0) saturate(100%) invert(57%) sepia(98%) saturate(400%) hue-rotate(80deg) brightness(1.05) drop-shadow(0 0 18px rgba(0,255,65,0.9))} }
         input::placeholder { color: #1a4a26; }
         input:focus { outline: none; border-color: #00ff41; box-shadow: 0 0 16px rgba(0,255,65,0.3); }
         input:disabled { opacity: 0.5; }
@@ -368,11 +368,11 @@ const s: Record<string, React.CSSProperties> = {
   // Logo
   logoWrap: {
     marginBottom: 4,
-    animation: "logoPulse 3s ease-in-out infinite",
   },
   logo: {
     objectFit: "contain",
-    opacity: 0.92,
+    filter: "brightness(0) saturate(100%) invert(57%) sepia(98%) saturate(400%) hue-rotate(80deg) brightness(1.05)",
+    animation: "logoPulse 3s ease-in-out infinite",
   },
 
   // Brand
