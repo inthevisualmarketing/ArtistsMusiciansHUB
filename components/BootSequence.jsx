@@ -226,7 +226,7 @@ const BOOT_LINES = [
 
 const SCANLINE_COUNT = 80;
 
-export default function BootSequence({ children, onComplete }) {
+export default function BootSequence({ children }) {
   const [phase, setPhase] = useState("press"); // press | booting | logo | done
   const [visibleLines, setVisibleLines] = useState([]);
   const [showCursor, setShowCursor] = useState(true);
@@ -241,6 +241,7 @@ export default function BootSequence({ children, onComplete }) {
   }, []);
 
   // Boot sequence logic
+  // Boot terminal phase — show lines, then transition to logo
   useEffect(() => {
     if (phase !== "booting") return;
 
@@ -261,23 +262,17 @@ export default function BootSequence({ children, onComplete }) {
     const logoTimer = setTimeout(() => setPhase("logo"), 5000);
     timers.push(logoTimer);
 
-    // Final done
-    const doneTimer = setTimeout(() => setPhase("done"), 7800);
-    timers.push(doneTimer);
-
     return () => timers.forEach(clearTimeout);
   }, [phase]);
 
-  // Call onComplete when boot finishes
+  // Logo phase — PS1 flash reveal, then advance to done
   useEffect(() => {
-    if (phase === "done" && onComplete) {
-      onComplete();
-    }
-  }, [phase, onComplete]);
+    if (phase !== "logo") return;
+    const doneTimer = setTimeout(() => setPhase("done"), 3500);
+    return () => clearTimeout(doneTimer);
+  }, [phase]);
 
-  if (phase === "done") {
-    return <>{children}</>;
-  }
+  if (phase === "done") return <>{children}</>;
 
   return (
     <AnimatePresence>
@@ -460,89 +455,122 @@ export default function BootSequence({ children, onComplete }) {
           {phase === "logo" && (
             <motion.div
               key="logo"
-              style={styles.logoScreen}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 30,
+              }}
             >
-              {/* Particle rings */}
-              {[1, 2, 3].map((i) => (
-                <motion.div
-                  key={i}
-                  style={{
-                    ...styles.ring,
-                    width: i * 180,
-                    height: i * 180,
-                    opacity: 0.15 / i,
-                  }}
-                  animate={{ rotate: 360 * (i % 2 === 0 ? -1 : 1) }}
-                  transition={{
-                    duration: 8 + i * 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-              ))}
-
+              {/* Background: black → deep purple gradient */}
               <motion.div
-                style={styles.logoWrap}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
-              >
-                <div style={styles.logoBox}>
-                  <span style={styles.logoAMH}>AMH</span>
-                  <div style={styles.logoUnderline} />
-                </div>
-              </motion.div>
+                style={{ position: "absolute", inset: 0 }}
+                initial={{ background: "#000000" }}
+                animate={{ background: "radial-gradient(ellipse at center, #1a0533 0%, #0d0221 40%, #050010 100%)" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+              />
 
+              {/* PS1-style white flash burst */}
               <motion.div
-                style={styles.logoSubWrap}
-                initial={{ opacity: 0, y: 20 }}
+                style={{
+                  position: "absolute", inset: 0,
+                  background: "white",
+                  zIndex: 40,
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.9, 0] }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              />
+
+              {/* Purple flash after white */}
+              <motion.div
+                style={{
+                  position: "absolute", inset: 0,
+                  background: "radial-gradient(circle at center, rgba(188,19,254,0.4) 0%, transparent 70%)",
+                  zIndex: 35,
+                }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: [0, 1, 0], scale: [0.5, 2, 3] }}
+                transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+              />
+
+              {/* AMH Logo — scales in with spring after flash */}
+              <motion.img
+                src="https://res.cloudinary.com/dbpremci4/image/upload/w_400,h_400,c_fit/white-hub-logo-transparent"
+                alt="Artists Musicians Hub"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 0.8,
+                  type: "spring",
+                  bounce: 0.35,
+                }}
+                style={{
+                  height: "clamp(100px, 25vw, 180px)",
+                  width: "auto",
+                  position: "relative",
+                  zIndex: 50,
+                  filter: "drop-shadow(0 0 20px rgba(188,19,254,0.8)) drop-shadow(0 0 60px rgba(188,19,254,0.4))",
+                }}
+              />
+
+              {/* Glow bloom behind logo */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  width: 300, height: 300,
+                  borderRadius: "50%",
+                  background: "radial-gradient(circle, rgba(188,19,254,0.25) 0%, transparent 70%)",
+                  zIndex: 45,
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: [0, 1, 0.6], scale: [0, 1.5, 2] }}
+                transition={{ delay: 0.5, duration: 2, ease: "easeOut" }}
+              />
+
+              {/* Subtitle — fades in after logo lands */}
+              <motion.div
+                style={{ position: "relative", zIndex: 50, textAlign: "center", marginTop: 24 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
+                transition={{ delay: 1.3, duration: 0.6 }}
               >
-                <p style={styles.logoSub}>ARTISTS MUSICIANS HUB</p>
-                <p style={styles.logoTagline}>SAN ANTONIO · EST. 2018 · 1M+ STREAMS</p>
+                <p style={{
+                  color: "#a78bca",
+                  fontSize: "clamp(10px, 2vw, 14px)",
+                  letterSpacing: "0.4em",
+                  fontFamily: "'Share Tech Mono', monospace",
+                  margin: 0,
+                }}>
+                  ARTISTS MUSICIANS HUB
+                </p>
+                <p style={{
+                  color: "#5b4a7a",
+                  fontSize: "clamp(9px, 1.5vw, 11px)",
+                  letterSpacing: "0.3em",
+                  marginTop: 8,
+                  fontFamily: "'Share Tech Mono', monospace",
+                }}>
+                  SAN ANTONIO · EST. 2018
+                </p>
               </motion.div>
 
-              {/* Music symbols row */}
+              {/* Fade to black at the end — smooth exit */}
               <motion.div
-                style={styles.symbols}
+                style={{
+                  position: "absolute", inset: 0,
+                  background: "#0a0a0f",
+                  zIndex: 60,
+                  pointerEvents: "none",
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.3, duration: 0.5 }}
-              >
-                {[
-                  { s: "𝄞", color: "#00f0ff" },  // Treble Clef
-                  { s: "♩",  color: "#ff2a6d" },  // Quarter Note
-                  { s: "♫",  color: "#bc13fe" },  // Beamed Eighth Notes
-                  { s: "𝄢", color: "#f5f500" },  // Bass Clef
-                ].map(({ s, color }, i) => (
-                  <motion.span
-                    key={i}
-                    style={{ ...styles.symbol, color, filter: `drop-shadow(0 0 8px ${color})` }}
-                    animate={{ opacity: [0.4, 1, 0.4] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                    }}
-                  >
-                    {s}
-                  </motion.span>
-                ))}
-              </motion.div>
-
-              <motion.p
-                style={styles.enterText}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ delay: 1.8, duration: 1.2, repeat: Infinity }}
-              >
-                ENTERING THE TONE ZONE...
-              </motion.p>
+                transition={{ delay: 2.5, duration: 0.8, ease: "easeInOut" }}
+              />
             </motion.div>
           )}
         </AnimatePresence>
