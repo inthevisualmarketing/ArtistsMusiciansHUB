@@ -226,7 +226,7 @@ const BOOT_LINES = [
 
 const SCANLINE_COUNT = 80;
 
-export default function BootSequence({ children }) {
+export default function BootSequence({ children, onComplete }) {
   const [phase, setPhase] = useState("press"); // press | booting | logo | done
   const [visibleLines, setVisibleLines] = useState([]);
   const [showCursor, setShowCursor] = useState(true);
@@ -268,7 +268,16 @@ export default function BootSequence({ children }) {
     return () => timers.forEach(clearTimeout);
   }, [phase]);
 
-  if (phase === "done") return <>{children}</>;
+  // Call onComplete when boot finishes
+  useEffect(() => {
+    if (phase === "done" && onComplete) {
+      onComplete();
+    }
+  }, [phase, onComplete]);
+
+  if (phase === "done") {
+    return <>{children}</>;
+  }
 
   return (
     <AnimatePresence>
@@ -311,6 +320,28 @@ export default function BootSequence({ children }) {
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 0.4 }}
             >
+              {/* AMH Logo — centered with slow glow pulse */}
+              <motion.img
+                src="https://res.cloudinary.com/dbpremci4/image/upload/w_200,h_200,c_fit/white-hub-logo-transparent"
+                alt="Artists Musicians Hub"
+                animate={{
+                  filter: [
+                    "drop-shadow(0 0 8px rgba(188,19,254,0.3)) drop-shadow(0 0 20px rgba(188,19,254,0.15))",
+                    "drop-shadow(0 0 16px rgba(188,19,254,0.7)) drop-shadow(0 0 40px rgba(188,19,254,0.35))",
+                    "drop-shadow(0 0 8px rgba(188,19,254,0.3)) drop-shadow(0 0 20px rgba(188,19,254,0.15))",
+                  ],
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  height: 90,
+                  width: "auto",
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: 20,
+                }}
+              />
+
               {/* Music symbol cluster */}
               <motion.div
                 style={styles.diamonds}
