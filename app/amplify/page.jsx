@@ -292,7 +292,7 @@ const TIERS = [
     color: "#bc13fe",
     tag: "FOUNDATION",
     tagline: "This is where it all begins.",
-    stripeUrl: "https://buy.stripe.com/AMH_BASIC_LINK", // Replace with real Stripe payment link
+    stripeUrl: "https://buy.stripe.com/9B6aEWbFE3Ue6ILc6Xffy01",
     summary: "Ideal for aspiring musicians and producers who want to explore our platform and take their first steps towards success.",
     features: [
       {
@@ -320,7 +320,7 @@ const TIERS = [
     color: "#00f0ff",
     tag: "MOST POPULAR",
     tagline: "Ready to take your music career to the next level?",
-    stripeUrl: "https://buy.stripe.com/AMH_PRO_LINK", // Replace with real Stripe payment link
+    stripeUrl: "https://buy.stripe.com/6oU5kC9xwaiCc357QHffy02",
     summary: "A comprehensive package with advanced features to help you accelerate your growth and success.",
     includes: "All AMPLIFY Basic benefits, plus:",
     features: [
@@ -349,7 +349,7 @@ const TIERS = [
     color: "#ff2a6d",
     tag: "MAX POWER",
     tagline: "The ultimate music career transformation.",
-    stripeUrl: "https://buy.stripe.com/AMH_ELITE_LINK", // Replace with real Stripe payment link
+    stripeUrl: "https://buy.stripe.com/14AdR8gZY3Ue8QT0offfy03",
     summary: "Opens doors to unparalleled opportunities and personalized support. Everything in Pro, and more.",
     includes: "All AMPLIFY Pro benefits, plus:",
     features: [
@@ -568,55 +568,140 @@ function ComparisonStrip() {
     { feature: "Premium Sync Licensing", basic: false, pro: false, elite: true },
   ];
 
+  const tiers = [
+    { name: "BASIC", price: "$100", color: "#bc13fe" },
+    { name: "PRO", price: "$250", color: "#00f0ff" },
+    { name: "ELITE", price: "$500", color: "#ff2a6d" },
+  ];
+
   return (
     <section style={{ padding: "80px 24px", position: "relative", zIndex: 2 }}>
-      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+      <div style={{ maxWidth: 820, margin: "0 auto" }}>
         <SectionHeader label="SIDE BY SIDE" title="COMPARE TIERS" />
 
-        <div style={{ marginTop: 48, overflowX: "auto" }}>
-          <table style={{
-            width: "100%", borderCollapse: "collapse",
-            fontFamily: "'Share Tech Mono', monospace",
-          }}>
-            <thead>
-              <tr>
-                <th style={{ ...thStyle, textAlign: "left", color: "#5b4a7a" }}>FEATURE</th>
-                <th style={{ ...thStyle, color: "#bc13fe" }}>BASIC</th>
-                <th style={{ ...thStyle, color: "#00f0ff" }}>PRO</th>
-                <th style={{ ...thStyle, color: "#ff2a6d" }}>ELITE</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, i) => (
-                <tr key={row.feature} style={{ background: i % 2 === 0 ? "rgba(188,19,254,0.02)" : "transparent" }}>
-                  <td style={{ ...tdStyle, textAlign: "left", color: "#a78bca" }}>{row.feature}</td>
-                  <td style={tdStyle}><Check on={row.basic} color="#bc13fe" /></td>
-                  <td style={tdStyle}><Check on={row.pro} color="#00f0ff" /></td>
-                  <td style={tdStyle}><Check on={row.elite} color="#ff2a6d" /></td>
-                </tr>
+        <div style={{ marginTop: 48, overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+          <div style={{ minWidth: 580 }}>
+            {/* Column headers */}
+            <div style={{
+              display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr",
+              borderBottom: "2px solid rgba(188,19,254,0.2)",
+              paddingBottom: 16, marginBottom: 4,
+            }}>
+              <div style={{ fontSize: 10, letterSpacing: "0.2em", color: "#3d2060", padding: "0 12px", alignSelf: "end" }}>
+                FEATURE
+              </div>
+              {tiers.map(t => (
+                <div key={t.name} style={{ textAlign: "center" }}>
+                  <div style={{
+                    fontFamily: "'Share Tech Mono', monospace", fontSize: 14,
+                    letterSpacing: "0.25em", color: t.color, marginBottom: 4,
+                    textShadow: `0 0 10px ${t.color}55`,
+                  }}>{t.name}</div>
+                  <div style={{
+                    fontFamily: "'Share Tech Mono', monospace", fontSize: 18,
+                    color: "#e0d0ff",
+                  }}>{t.price}<span style={{ fontSize: 10, color: "#5b4a7a" }}>/mo</span></div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+
+            {/* Feature rows */}
+            {rows.map((row, i) => (
+              <CompareRow
+                key={row.feature}
+                feature={row.feature}
+                values={[
+                  { on: row.basic, color: "#bc13fe" },
+                  { on: row.pro, color: "#00f0ff" },
+                  { on: row.elite, color: "#ff2a6d" },
+                ]}
+                even={i % 2 === 0}
+              />
+            ))}
+
+            {/* Bottom CTA row */}
+            <div style={{
+              display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr",
+              marginTop: 16, paddingTop: 16,
+              borderTop: "2px solid rgba(188,19,254,0.2)",
+            }}>
+              <div />
+              {tiers.map(t => (
+                <div key={t.name} style={{ textAlign: "center" }}>
+                  <a
+                    href={`/amplify#${t.name.toLowerCase()}`}
+                    style={{
+                      display: "inline-block", fontSize: 9, letterSpacing: "0.15em",
+                      color: t.color, textDecoration: "none",
+                      padding: "8px 14px",
+                      border: `1px solid ${t.color}44`,
+                      transition: "all 0.3s",
+                      clipPath: "polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%)",
+                      WebkitClipPath: "polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%)",
+                    }}
+                  >
+                    SELECT
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-const thStyle = {
-  padding: "12px 8px", fontSize: 10, letterSpacing: "0.2em", textAlign: "center",
-  borderBottom: "1px solid rgba(188,19,254,0.15)",
-};
-const tdStyle = {
-  padding: "10px 8px", fontSize: 11, textAlign: "center",
-  borderBottom: "1px solid rgba(188,19,254,0.06)",
-};
-
-function Check({ on, color }) {
-  return on
-    ? <span style={{ color, fontSize: 14, filter: `drop-shadow(0 0 4px ${color})`, WebkitFilter: `drop-shadow(0 0 4px ${color})` }}>✓</span>
-    : <span style={{ color: "#2d1b4e", fontSize: 12 }}>—</span>;
+function CompareRow({ feature, values, even }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr",
+        alignItems: "center",
+        background: hov ? "rgba(188,19,254,0.06)" : (even ? "rgba(188,19,254,0.02)" : "transparent"),
+        borderBottom: "1px solid rgba(188,19,254,0.06)",
+        transition: "background 0.2s",
+        padding: "0 0",
+      }}
+    >
+      <div style={{
+        fontSize: 11, color: hov ? "#e0d0ff" : "#a78bca", padding: "12px 12px",
+        letterSpacing: "0.03em", transition: "color 0.2s",
+      }}>
+        {feature}
+      </div>
+      {values.map((v, i) => (
+        <div key={i} style={{ textAlign: "center", padding: "12px 8px" }}>
+          {v.on ? (
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: 24, height: 24, borderRadius: "50%",
+              background: `${v.color}15`,
+              border: `1px solid ${v.color}33`,
+              color: v.color, fontSize: 12,
+              filter: `drop-shadow(0 0 6px ${v.color}44)`,
+              WebkitFilter: `drop-shadow(0 0 6px ${v.color}44)`,
+            }}>✓</span>
+          ) : (
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: 24, height: 24, borderRadius: "50%",
+              border: "1px solid rgba(188,19,254,0.08)",
+              color: "#2d1b4e", fontSize: 10,
+            }}>—</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
 }
+
+const thStyle = {};
+const tdStyle = {};
+function Check() { return null; }
 
 // ============================================================
 // BOTTOM CTA
@@ -761,7 +846,6 @@ export default function AmplifyPage() {
         body { background: #0a0a0f; -webkit-font-smoothing: antialiased; }
         img { max-width: 100%; height: auto; }
         a:hover { color: #bc13fe !important; }
-        table { min-width: 500px; }
 
         @media (max-width: 768px) {
           section { text-align: center !important; }
