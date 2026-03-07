@@ -9,7 +9,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function ElectricGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = canvasRef.current as HTMLCanvasElement;
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     let animId: number;
@@ -78,12 +78,12 @@ function ElectricGrid() {
 }
 
 // ─── Brand edge sparks (traces the perimeter of the logo block) ───────────────
-function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElement | null> }) {
+function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElement> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const target = targetRef.current;
+    const canvas = canvasRef.current as HTMLCanvasElement;
+    const target = targetRef.current as HTMLDivElement;
     if (!canvas || !target) return;
     const ctx = canvas.getContext("2d")!;
     let animId: number;
