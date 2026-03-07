@@ -491,8 +491,8 @@ function HeroSection() {
 
       {/* Dual CTAs */}
       <div style={{ display: "flex", gap: 16, marginTop: 48, flexWrap: "wrap", justifyContent: "center" }}>
-        <HeroButton primary label="EXPLORE AMPLIFY" icon="▲" />
-        <HeroButton label="ENTER TONE ZONE" icon="◈" />
+        <HeroButton primary label="EXPLORE AMPLIFY" icon="▲" href="/amplify" />
+        <HeroButton label="ENTER TONE ZONE" icon="◈" href="/news" />
       </div>
 
       {/* Scroll indicator */}
@@ -508,13 +508,15 @@ function HeroSection() {
   );
 }
 
-function HeroButton({ label, icon, primary }) {
+function HeroButton({ label, icon, primary, href = "#" }) {
   const [hov, setHov] = useState(false);
   return (
-    <button
+    <a
+      href={href}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
+        display: "inline-block", textDecoration: "none",
         background: primary
           ? (hov ? "linear-gradient(135deg, #711c91, #bc13fe)" : "linear-gradient(135deg, #711c91aa, #bc13feaa)")
           : "transparent",
@@ -529,7 +531,7 @@ function HeroButton({ label, icon, primary }) {
       }}
     >
       {icon} {label}
-    </button>
+    </a>
   );
 }
 
@@ -802,7 +804,8 @@ function TierCard({ name, price, period, color, features, tag, elevated }) {
           </div>
         ))}
       </div>
-      <button style={{
+      <a href={`/amplify#${name.toLowerCase()}`} style={{
+        display: "block", textDecoration: "none", textAlign: "center",
         background: hov ? `${color}22` : "transparent",
         border: `1px solid ${color}66`, color: color,
         padding: "10px 24px", fontSize: 11, letterSpacing: "0.2em",
@@ -811,7 +814,7 @@ function TierCard({ name, price, period, color, features, tag, elevated }) {
         clipPath: "polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)", WebkitClipPath: "polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)",
       }}>
         SELECT {name}
-      </button>
+      </a>
     </div>
   );
 }
@@ -847,7 +850,7 @@ function ToneZoneSection() {
         ))}
       </div>
       <div style={{ textAlign: "center", marginTop: 48 }}>
-        <HeroButton label="VIEW ALL ARTISTS" icon="◈" />
+        <HeroButton label="VIEW ALL ARTISTS" icon="◈" href="/news" />
       </div>
     </section>
   );
