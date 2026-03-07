@@ -78,14 +78,15 @@ function ElectricGrid() {
 }
 
 // ─── Brand edge sparks (traces the perimeter of the logo block) ───────────────
-function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElement> }) {
+function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElement | null> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current as HTMLCanvasElement;
-    const target = targetRef.current as HTMLDivElement;
+    const canvas = canvasRef.current as HTMLCanvasElement | null;
+    const target = targetRef.current;
     if (!canvas || !target) return;
-    const ctx = canvas.getContext("2d")!;
+    const safeCanvas = canvas as HTMLCanvasElement;
+    const ctx = safeCanvas.getContext("2d")!;
     let animId: number;
 
     // Padding around the text block
@@ -94,8 +95,8 @@ function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElemen
     // Resize canvas to match target + padding
     const syncSize = () => {
       const r = target.getBoundingClientRect();
-      canvas.width  = r.width  + PAD * 2;
-      canvas.height = r.height + PAD * 2;
+      safeCanvas.width  = r.width  + PAD * 2;
+      safeCanvas.height = r.height + PAD * 2;
     };
     syncSize();
 
@@ -115,7 +116,7 @@ function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElemen
 
     // Convert 0-1 perimeter position to canvas x,y
     function perimeterPoint(t: number): { x: number; y: number } {
-      const w = canvas.width, h = canvas.height;
+      const w = safeCanvas.width, h = safeCanvas.height;
       const perimeter = 2 * (w + h);
       const dist = ((t % 1) + 1) % 1 * perimeter;
       if (dist < w)                   return { x: dist,         y: 0 };         // top
@@ -127,12 +128,12 @@ function BrandElectric({ targetRef }: { targetRef: React.RefObject<HTMLDivElemen
     const TRAIL_LEN = 28;
 
     function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, safeCanvas.width, safeCanvas.height);
 
       // Dim border outline so the sparks have a track to ride
       ctx.strokeStyle = "rgba(0,255,65,0.08)";
       ctx.lineWidth = 1;
-      ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
+      ctx.strokeRect(0.5, 0.5, safeCanvas.width - 1, safeCanvas.height - 1);
 
       sparks.forEach(spark => {
         spark.pos = (spark.pos + spark.speed) % 1;
