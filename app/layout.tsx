@@ -1,45 +1,37 @@
 import type { Metadata } from "next";
 import { Share_Tech_Mono } from "next/font/google";
-import "./globals.css";
+import Script from "next/script";
 
-const mono = Share_Tech_Mono({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-mono",
-});
+const mono = Share_Tech_Mono({ weight: "400", subsets: ["latin"], variable: "--font-mono" });
+
+// ── Google Analytics ID ──
+const GA_ID = "G-WPWD1K1CH7";
 
 export const metadata: Metadata = {
-  title: "Artists Musicians HUB — Amplify Your Music",
+  title: "Artists Musicians HUB — Amplify Your Music. Own Your Sound.",
   description:
-    "San Antonio's premier music marketing platform. AMH connects independent artists with real listeners — 1M+ streams delivered since 2018. Subscribe to AMPLIFY and own your sound.",
+    "San Antonio's premier music marketing platform. Professional promotion, distribution, and sync licensing for independent artists. 1M+ streams generated.",
   keywords: [
     "music marketing",
+    "artist promotion",
     "San Antonio music",
-    "independent artists",
+    "sync licensing",
+    "music distribution",
     "AMPLIFY",
-    "music promotion",
-    "The Tone Zone",
-    "AMH",
     "Artists Musicians HUB",
+    "AMH",
+    "Tone Zone",
+    "independent artists",
   ],
-  authors: [{ name: "Artists Musicians HUB" }],
-  creator: "Artists Musicians HUB",
-  publisher: "Artists Musicians HUB",
-  metadataBase: new URL("https://artistsmusicianshub.com"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    type: "website",
+    title: "Artists Musicians HUB",
+    description: "Amplify Your Music. Own Your Sound. San Antonio's premier music marketing platform.",
     url: "https://artistsmusicianshub.com",
-    title: "Artists Musicians HUB — Amplify Your Music",
-    description:
-      "San Antonio's premier music marketing platform. 1M+ streams delivered. Join AMPLIFY and own your sound.",
     siteName: "Artists Musicians HUB",
+    type: "website",
     images: [
       {
-        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_1200,h_630,c_pad,b_rgb:000a02/white-hub-logo",
+        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_1200,h_630,c_fill/white-hub-logo-transparent",
         width: 1200,
         height: 630,
         alt: "Artists Musicians HUB",
@@ -48,65 +40,44 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Artists Musicians HUB — Amplify Your Music",
-    description:
-      "San Antonio's premier music marketing platform. 1M+ streams delivered. Join AMPLIFY and own your sound.",
-    images: [
-      "https://res.cloudinary.com/dbpremci4/image/upload/w_1200,h_630,c_pad,b_rgb:000a02/white-hub-logo",
-    ],
+    title: "Artists Musicians HUB",
+    description: "Amplify Your Music. Own Your Sound.",
   },
   icons: {
-    icon: [
-      {
-        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_32,h_32,c_fit/white-hub-logo",
-        sizes: "32x32",
-        type: "image/png",
-      },
-      {
-        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_16,h_16,c_fit/white-hub-logo",
-        sizes: "16x16",
-        type: "image/png",
-      },
-    ],
-    apple: [
-      {
-        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_180,h_180,c_pad,b_rgb:000a02/white-hub-logo",
-        sizes: "180x180",
-        type: "image/png",
-      },
-    ],
-    shortcut:
-      "https://res.cloudinary.com/dbpremci4/image/upload/w_32,h_32,c_fit/white-hub-logo",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-    },
+    icon: "https://res.cloudinary.com/dbpremci4/image/upload/w_32,h_32,c_fit/white-hub-logo-transparent",
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={mono.variable}>
       <head>
-        <meta name="theme-color" content="#000a02" />
-        <meta name="color-scheme" content="dark" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
         />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </head>
-      <body>{children}</body>
+      <body
+        style={{
+          margin: 0,
+          padding: 0,
+          background: "#0a0a0f",
+          fontFamily: "var(--font-mono), 'Courier New', monospace",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
+        }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
