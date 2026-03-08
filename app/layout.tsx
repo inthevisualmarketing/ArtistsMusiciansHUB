@@ -48,6 +48,8 @@ export const metadata: Metadata = {
   },
 };
 
+import SiteNav from "@/components/SiteNav";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={mono.variable}>
@@ -76,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           MozOsxFontSmoothing: "grayscale",
         }}
       >
+        <SiteNav />
         {children}
       </body>
     </html>

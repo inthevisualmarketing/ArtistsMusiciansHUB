@@ -1367,8 +1367,7 @@ export default function AMHHomePage() {
       <ElectricGrid />
 
       {/* Navigation */}
-      <XMBNav />
-      <RadialNav />
+      {/* Nav handled by SiteNav in layout */}
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 2 }}>
@@ -1387,10 +1386,6 @@ export default function AMHHomePage() {
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
         @keyframes pulse { 0%,100%{opacity:0.45} 50%{opacity:1} }
         @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
-        @keyframes radialFadeIn { from{opacity:0} to{opacity:1} }
-        @keyframes radialItemPop { from{opacity:0} to{opacity:1} }
-        @keyframes radialRingSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-        @keyframes triggerPulse { 0%,100%{box-shadow:0 0 15px rgba(188,19,254,0.3)} 50%{box-shadow:0 0 25px rgba(188,19,254,0.5), 0 0 50px rgba(188,19,254,0.15)} }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
         body { background: #0a0a0f; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
@@ -1405,59 +1400,33 @@ export default function AMHHomePage() {
         textarea::-webkit-scrollbar { display: none; }
         button:disabled { cursor: default !important; }
 
-        /* ── RADIAL WHEEL: hidden on desktop ── */
-        .radial-trigger { display: none !important; }
-        .mobile-topbar { display: none !important; }
-
         /* ── TABLET (769px – 1024px) ── */
         @media (min-width: 769px) and (max-width: 1024px) {
-          .desktop-nav > div:nth-child(2) > a { padding: 8px 10px !important; }
-          .desktop-nav > div:nth-child(2) > a > span:last-of-type { font-size: 8px !important; letter-spacing: 0.12em !important; }
           section { padding-left: 32px !important; padding-right: 32px !important; }
         }
 
         /* ── MOBILE ── */
         @media (max-width: 768px) {
-          /* Hide desktop XMB nav, show radial wheel */
-          .desktop-nav { display: none !important; }
-          .radial-trigger { display: flex !important; animation: triggerPulse 3s ease-in-out infinite; }
-          .mobile-topbar { display: flex !important; }
-
-          /* All sections: center text */
           section { text-align: center !important; }
           section h3, section p { text-align: center !important; }
-
-          /* Service cards: single column, centered */
           section > div[style*="grid"] {
             grid-template-columns: 1fr !important;
             max-width: 360px;
             margin-left: auto !important;
             margin-right: auto !important;
           }
-
-          /* Tier cards: single column */
-          section > div[style*="grid"][style*="260px"] {
-            max-width: 340px;
-          }
-
-          /* Split CTA: stack */
+          section > div[style*="grid"][style*="260px"] { max-width: 340px; }
           section > div[style*="300px"] {
             grid-template-columns: 1fr !important;
             max-width: 400px;
             margin-left: auto !important;
             margin-right: auto !important;
           }
-
-          /* Footer: center everything */
           footer > div { text-align: center !important; }
           footer > div > div { text-align: center !important; align-items: center !important; }
           footer > div > div > div:last-child { justify-content: center !important; }
           footer > div:last-child { justify-content: center !important; text-align: center !important; }
           footer > div:last-child > div { justify-content: center !important; }
-        }
-
-        @media (max-width: 480px) {
-          .radial-trigger { bottom: 18px !important; right: 18px !important; width: 50px !important; height: 50px !important; font-size: 18px !important; }
         }
       `}</style>
     </div>
