@@ -179,9 +179,8 @@ const WHEEL_ITEMS = [
 function RadialNav() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  const RADIUS = 120;
+  const RADIUS = 140;
   const count = WHEEL_ITEMS.length;
-  // Start from top (-90deg) and distribute evenly
   const startAngle = -90;
 
   return (
@@ -201,7 +200,7 @@ function RadialNav() {
         }} />
       </div>
 
-      {/* Trigger button — fixed bottom right */}
+      {/* Trigger button */}
       <button
         className="radial-trigger"
         onClick={() => setOpen(!open)}
@@ -229,35 +228,35 @@ function RadialNav() {
         <div
           style={{
             position: "fixed", top: 0, right: 0, bottom: 0, left: 0, zIndex: 150,
-            background: "rgba(5,0,12,0.92)",
-            backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
+            background: "rgba(5,0,12,0.94)",
+            backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
             display: "flex", alignItems: "center", justifyContent: "center",
             animation: "radialFadeIn 0.25s ease-out",
           }}
           onClick={() => setOpen(false)}
         >
-          {/* Scanlines on overlay */}
+          {/* Scanlines */}
           <div style={{
             position: "absolute", top: 0, right: 0, bottom: 0, left: 0,
-            background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)",
+            background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px)",
             pointerEvents: "none",
           }} />
 
-          {/* Outer ring */}
+          {/* Outer decorative ring */}
           <div style={{
             position: "absolute",
-            width: RADIUS * 2 + 80, height: RADIUS * 2 + 80,
+            width: RADIUS * 2 + 100, height: RADIUS * 2 + 100,
             borderRadius: "50%",
-            border: "1px solid rgba(188,19,254,0.15)",
-            animation: "radialRingSpin 20s linear infinite",
+            border: "1px solid rgba(188,19,254,0.12)",
+            animation: "radialRingSpin 25s linear infinite",
           }} />
 
-          {/* Inner ring */}
+          {/* Mid ring */}
           <div style={{
             position: "absolute",
-            width: RADIUS * 2 + 20, height: RADIUS * 2 + 20,
+            width: RADIUS * 2 + 50, height: RADIUS * 2 + 50,
             borderRadius: "50%",
-            border: "1px solid rgba(188,19,254,0.08)",
+            border: "1px dashed rgba(188,19,254,0.06)",
           }} />
 
           {/* Center hub */}
@@ -265,15 +264,15 @@ function RadialNav() {
             onClick={(e) => e.stopPropagation()}
             style={{
               position: "relative",
-              width: RADIUS * 2 + 80, height: RADIUS * 2 + 80,
+              width: RADIUS * 2 + 100, height: RADIUS * 2 + 100,
             }}
           >
-            {/* Center logo */}
+            {/* Center logo circle */}
             <div style={{
               position: "absolute",
               top: "50%", left: "50%",
               transform: "translate(-50%, -50%)",
-              width: 64, height: 64, borderRadius: "50%",
+              width: 76, height: 76, borderRadius: "50%",
               background: "rgba(10,0,20,0.95)",
               border: "2px solid rgba(188,19,254,0.4)",
               display: "flex", alignItems: "center", justifyContent: "center",
@@ -281,11 +280,64 @@ function RadialNav() {
               zIndex: 10,
             }}>
               <img src={LOGO_URL} alt="AMH" style={{
-                height: 34, width: "auto",
-                filter: "drop-shadow(0 0 6px rgba(188,19,254,0.6))",
-                WebkitFilter: "drop-shadow(0 0 6px rgba(188,19,254,0.6))",
+                height: 40, width: "auto",
+                filter: "drop-shadow(0 0 8px rgba(188,19,254,0.6))",
+                WebkitFilter: "drop-shadow(0 0 8px rgba(188,19,254,0.6))",
               }} />
             </div>
+
+            {/* Animated connector lines SVG layer */}
+            <svg style={{
+              position: "absolute", top: 0, left: 0,
+              width: "100%", height: "100%",
+              pointerEvents: "none", zIndex: 3,
+            }}>
+              <defs>
+                {WHEEL_ITEMS.map((item, i) => (
+                  <linearGradient key={`grad-${i}`} id={`line-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor={item.color} stopOpacity="0.05" />
+                    <stop offset="50%" stopColor={item.color} stopOpacity="0.35" />
+                    <stop offset="100%" stopColor={item.color} stopOpacity="0.05" />
+                  </linearGradient>
+                ))}
+              </defs>
+              {WHEEL_ITEMS.map((item, i) => {
+                const angle = startAngle + (i * 360 / count);
+                const rad = (angle * Math.PI) / 180;
+                const cx = (RADIUS * 2 + 100) / 2;
+                const cy = (RADIUS * 2 + 100) / 2;
+                const ex = cx + Math.cos(rad) * RADIUS;
+                const ey = cy + Math.sin(rad) * RADIUS;
+                return (
+                  <g key={`line-${i}`}>
+                    {/* Static dashed line */}
+                    <line x1={cx} y1={cy} x2={ex} y2={ey}
+                      stroke={item.color} strokeWidth="1" opacity="0.1"
+                      strokeDasharray="4,4"
+                    />
+                    {/* Animated energy pulse traveling along the line */}
+                    <circle r="2" fill={item.color} opacity="0.7">
+                      <animateMotion
+                        dur={`${2 + i * 0.3}s`}
+                        repeatCount="indefinite"
+                        path={`M${cx},${cy} L${ex},${ey}`}
+                      />
+                      <animate attributeName="opacity" values="0;0.8;0" dur={`${2 + i * 0.3}s`} repeatCount="indefinite" />
+                    </circle>
+                    {/* Second pulse offset */}
+                    <circle r="1.5" fill={item.color} opacity="0.4">
+                      <animateMotion
+                        dur={`${2 + i * 0.3}s`}
+                        begin={`${1 + i * 0.15}s`}
+                        repeatCount="indefinite"
+                        path={`M${cx},${cy} L${ex},${ey}`}
+                      />
+                      <animate attributeName="opacity" values="0;0.5;0" dur={`${2 + i * 0.3}s`} begin={`${1 + i * 0.15}s`} repeatCount="indefinite" />
+                    </circle>
+                  </g>
+                );
+              })}
+            </svg>
 
             {/* Nav items around the wheel */}
             {WHEEL_ITEMS.map((item, i) => {
@@ -305,57 +357,41 @@ function RadialNav() {
                   animation: `radialItemPop 0.35s ${delay}s ease-out both`,
                   opacity: 0,
                 }}>
-                  {/* Connector line from center */}
-                  <svg style={{
-                    position: "absolute",
-                    top: "50%", left: "50%",
-                    overflow: "visible", pointerEvents: "none",
-                    width: 1, height: 1,
-                  }}>
-                    <line
-                      x1="0" y1="0" x2={-x} y2={-y}
-                      stroke={item.color}
-                      strokeWidth="1"
-                      opacity="0.15"
-                      strokeDasharray="3,3"
-                    />
-                  </svg>
-
-                  {/* Item node */}
                   <a
                     href={item.href}
                     onClick={(e) => {
-                      e.preventDefault();
                       e.stopPropagation();
                       setSelected(i);
-                      setTimeout(() => { setOpen(false); setSelected(null); }, 300);
+                      // Navigate after brief highlight
+                      setTimeout(() => {
+                        window.location.href = item.href;
+                      }, 250);
+                      e.preventDefault();
                     }}
                     style={{
                       display: "flex", flexDirection: "column",
-                      alignItems: "center", gap: 4,
+                      alignItems: "center", gap: 6,
                       textDecoration: "none",
                     }}
                   >
-                    {/* Icon circle */}
                     <div style={{
-                      width: 48, height: 48, borderRadius: "50%",
+                      width: 56, height: 56, borderRadius: "50%",
                       background: isSelected ? `${item.color}33` : "rgba(10,0,20,0.9)",
                       border: `1.5px solid ${isSelected ? item.color : item.color + "55"}`,
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 20, color: item.color,
+                      fontSize: 22, color: item.color,
                       boxShadow: isSelected
-                        ? `0 0 25px ${item.color}66, inset 0 0 15px ${item.color}22`
-                        : `0 0 10px ${item.color}22`,
+                        ? `0 0 30px ${item.color}66, inset 0 0 15px ${item.color}22`
+                        : `0 0 12px ${item.color}22`,
                       transition: "all 0.2s ease",
-                      filter: `drop-shadow(0 0 4px ${item.color}66)`,
-                      WebkitFilter: `drop-shadow(0 0 4px ${item.color}66)`,
+                      filter: `drop-shadow(0 0 6px ${item.color}55)`,
+                      WebkitFilter: `drop-shadow(0 0 6px ${item.color}55)`,
                     }}>
                       {item.icon}
                     </div>
-                    {/* Label */}
                     <span style={{
                       fontFamily: "'Share Tech Mono', monospace",
-                      fontSize: 9, letterSpacing: "0.2em",
+                      fontSize: 10, letterSpacing: "0.2em",
                       color: isSelected ? item.color : "#8b7aaa",
                       textShadow: isSelected ? `0 0 8px ${item.color}` : "none",
                       transition: "all 0.2s",
@@ -369,7 +405,7 @@ function RadialNav() {
 
           {/* HUD text */}
           <div style={{
-            position: "absolute", bottom: 100, left: "50%", transform: "translateX(-50%)",
+            position: "absolute", bottom: 90, left: "50%", transform: "translateX(-50%)",
             textAlign: "center",
           }}>
             <span style={{
