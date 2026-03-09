@@ -8,6 +8,7 @@ const mono = Share_Tech_Mono({ weight: "400", subsets: ["latin"], variable: "--f
 const GA_ID = "G-WPWD1K1CH7";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.artistsmusicianshub.com"),
   title: {
     template: "%s | Artists Musicians HUB",
     default: "Artists Musicians HUB — Amplify Your Music. Own Your Sound.",
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_1200,h_630,c_fill/white-hub-logo-transparent",
+        url: "https://res.cloudinary.com/dbpremci4/image/upload/w_1200,h_630,c_fill/white-hub-logo",
         width: 1200,
         height: 630,
         alt: "Artists Musicians HUB — San Antonio Music Marketing",
