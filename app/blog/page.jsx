@@ -129,7 +129,7 @@ function PostCard({ post, index }) {
 const FOOTER_NAV = [
   { section: "NAVIGATE", links: [{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Services", href: "/services" }] },
   { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Blog", href: "/blog" }] },
-  { section: "CONNECT", links: [{ label: "Contact", href: "/contact" }, { label: "RSS Feed", href: "/blog/rss.xml" }] },
+  { section: "COMMUNITY", links: [{ label: "Ambassadors", href: "/ambassadors" }, { label: "Shop", href: "/shop" }, { label: "Contact", href: "/contact" }] },
 ];
 
 function Footer() {
@@ -180,7 +180,7 @@ export default function BlogPage() {
           </h1>
           <div style={{ height: 2, width: 60, margin: "20px auto 0", background: "linear-gradient(90deg, transparent, #bc13fe, #00f0ff, transparent)", boxShadow: "0 0 10px rgba(188,19,254,0.5)" }} />
           <p style={{ color: "#8b7aaa", fontSize: 13, maxWidth: 500, margin: "16px auto 0", lineHeight: 1.7 }}>
-            Artist spotlights, growth strategies, industry insights, and AMH updates.
+            Artist spotlights, growth strategies, industry insights, and Artists Musicians HUB updates.
           </p>
 
           {/* RSS link */}

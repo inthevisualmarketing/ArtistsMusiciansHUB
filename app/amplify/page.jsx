@@ -392,7 +392,7 @@ function TierSection() {
 
         <div style={{ textAlign: "center", marginTop: 32 }}>
           <span style={{ color: "#5b4a7a", fontSize: 11, letterSpacing: "0.2em" }}>
-            ALL TIERS INCLUDE ACCESS TO THE AMH COMMUNITY · CANCEL ANYTIME
+            ALL TIERS INCLUDE ACCESS TO THE ARTISTS MUSICIANS HUB COMMUNITY · CANCEL ANYTIME
           </span>
         </div>
       </div>
@@ -761,8 +761,8 @@ function BottomCTA() {
 // ============================================================
 const FOOTER_NAV = [
   { section: "NAVIGATE", links: [{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Services", href: "/services" }] },
-  { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Submit Content", href: "/submit" }] },
-  { section: "CONNECT", links: [{ label: "Contact", href: "/contact" }, { label: "Blog", href: "/blog" }, { label: "Shop", href: "/shop" }] },
+  { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Blog", href: "/blog" }] },
+  { section: "COMMUNITY", links: [{ label: "Ambassadors", href: "/ambassadors" }, { label: "Shop", href: "/shop" }, { label: "Contact", href: "/contact" }] },
 ];
 const SOCIALS = [
   { label: "IG", icon: "◉", href: "#" },

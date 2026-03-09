@@ -433,11 +433,16 @@ function CyberFrame({ children, style: extra = {} }) {
 }
 
 // ---------- HEX ARTIST CARD ----------
-function HexCard({ name, genre, color = "#bc13fe" }) {
+function HexCard({ name, genre, color = "#bc13fe", image, link }) {
   const [hov, setHov] = useState(false);
+  const [imgErr, setImgErr] = useState(false);
+  const initials = name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+  const Wrapper = link ? "a" : "div";
+  const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, cursor: "pointer" }}
+    <Wrapper
+      {...wrapperProps}
+      style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, cursor: "pointer", textDecoration: "none" }}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
     >
@@ -452,17 +457,39 @@ function HexCard({ name, genre, color = "#bc13fe" }) {
       }}>
         <div style={{
           width: 132, height: 132,
-          background: hov ? "linear-gradient(135deg, #1a0533, #2d1b4e)" : "#0d0221",
+          background: "#0d0221",
           clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)", WebkitClipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.4s ease",
+          overflow: "hidden", position: "relative",
         }}>
-          <span style={{ fontSize: 36, opacity: 0.3, color: color }}>♫</span>
+          {image && !imgErr ? (
+            <img
+              src={image}
+              alt={name}
+              onError={() => setImgErr(true)}
+              style={{
+                width: "100%", height: "100%", objectFit: "cover",
+                filter: hov ? "brightness(1.1) saturate(1.1)" : "brightness(0.7) saturate(0.75)",
+                transition: "filter 0.4s ease",
+              }}
+            />
+          ) : (
+            <span style={{ fontSize: 36, opacity: 0.3, color: color }}>{initials}</span>
+          )}
+          {/* Holographic sweep on hover */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.12) 55%, transparent 60%)",
+            transform: hov ? "translateX(200%)" : "translateX(-200%)",
+            transition: "transform 0.6s ease",
+            pointerEvents: "none",
+          }} />
         </div>
       </div>
       <span style={{ color: hov ? "#e0d0ff" : "#a78bca", fontSize: 12, letterSpacing: "0.15em", transition: "color 0.3s", textAlign: "center" }}>{name}</span>
       <span style={{ color: "#5b4a7a", fontSize: 10, letterSpacing: "0.1em", marginTop: -8 }}>{genre}</span>
-    </div>
+    </Wrapper>
   );
 }
 
@@ -512,7 +539,7 @@ function HeroSection() {
         {[
           { val: "2018", label: "ESTABLISHED" },
           { val: "1M+", label: "STREAMS" },
-          { val: "19+", label: "ARTISTS" },
+          { val: "50+", label: "ARTISTS" },
           { val: "210", label: "SAN ANTONIO" },
         ].map(({ val, label }) => (
           <div key={label} style={{ textAlign: "center" }}>
@@ -857,12 +884,12 @@ function TierCard({ name, price, period, color, features, tag, elevated }) {
 
 // ---------- SECTION: TONE ZONE SPOTLIGHT ----------
 const ARTISTS = [
-  { name: "BxneYvrdBxyz", genre: "HIP-HOP" },
-  { name: "Trevion500", genre: "R&B" },
-  { name: "YungNygma", genre: "RAP" },
-  { name: "JusDeno", genre: "HIP-HOP" },
-  { name: "Drunk Wizdumb", genre: "ALT RAP" },
-  { name: "Deacon Rap", genre: "RAP" },
+  { name: "BxneYvrdBxyz", genre: "ALT RAP", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/B2FEAF5E-A0A0-470C-808C-6E0B110D9A1C.jpg", link: "https://www.instagram.com/bxneyvrdbxyz" },
+  { name: "Trevion500", genre: "R&B / LABEL OWNER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/photo_2025-08-25_21-42-03.jpg", link: "https://www.trevion500.net/" },
+  { name: "YungNygma", genre: "ALT RAP", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/attistspage2.jpg", link: "https://www.instagram.com/yungnygma" },
+  { name: "Mike Dimes", genre: "RAPPER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/mikedimes1edited.png", link: "https://www.mikedimesofficial.com/" },
+  { name: "Drunk Wizdumb", genre: "ARTIST & PRODUCER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/wiz2.jpg", link: "https://www.instagram.com/drunkwizdumb/" },
+  { name: "Oh It's Chris", genre: "PRODUCER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/309860073_1090467918527233_8528524820240210101_n.jpg", link: "https://www.instagram.com/oh_itschris" },
 ];
 
 function ToneZoneSection() {
@@ -1277,8 +1304,8 @@ function SplitPanel({ color, icon, title, subtitle, desc, cta, href }) {
 // ---------- FOOTER ----------
 const FOOTER_NAV = [
   { section: "NAVIGATE", links: [{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Services", href: "/services" }] },
-  { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Submit Content", href: "/submit" }] },
-  { section: "CONNECT", links: [{ label: "Contact", href: "/contact" }, { label: "Blog", href: "/blog" }, { label: "Shop", href: "/shop" }] },
+  { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Blog", href: "/blog" }] },
+  { section: "COMMUNITY", links: [{ label: "Ambassadors", href: "/ambassadors" }, { label: "Shop", href: "/shop" }, { label: "Contact", href: "/contact" }] },
 ];
 
 const SOCIALS = [

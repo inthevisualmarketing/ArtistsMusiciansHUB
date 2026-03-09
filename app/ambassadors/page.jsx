@@ -24,7 +24,7 @@ function ElectricGrid() {
 
 const PERKS = [
   { icon: "◈", title: "REFERRAL COMMISSION", desc: "Earn commission every time someone signs up for AMPLIFY through your unique link. Real money for real impact.", color: "#00f0ff" },
-  { icon: "▲", title: "EARLY ACCESS", desc: "Be the first to know about AMH events, artist releases, and platform features before anyone else.", color: "#bc13fe" },
+  { icon: "▲", title: "EARLY ACCESS", desc: "Be the first to know about Artists Musicians HUB events, artist releases, and platform features before anyone else.", color: "#bc13fe" },
   { icon: "✦", title: "DISCOUNT CODES", desc: "Get exclusive promo codes to share with your followers — they save, you build your rep as a tastemaker.", color: "#ff2a6d" },
   { icon: "◎", title: "COMMUNITY", desc: "Join a network of creatives repping the 210's music scene. Collaboration, connection, and culture.", color: "#f5f500" },
 ];
@@ -182,7 +182,7 @@ function AmbassadorForm() {
 const FOOTER_NAV = [
   { section: "NAVIGATE", links: [{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Services", href: "/services" }] },
   { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Blog", href: "/blog" }] },
-  { section: "CONNECT", links: [{ label: "Contact", href: "/contact" }, { label: "Ambassadors", href: "/ambassadors" }, { label: "Shop", href: "/shop" }] },
+  { section: "COMMUNITY", links: [{ label: "Ambassadors", href: "/ambassadors" }, { label: "Shop", href: "/shop" }, { label: "Contact", href: "/contact" }] },
 ];
 
 function Footer() {
@@ -251,7 +251,7 @@ export default function AmbassadorsPage() {
                 We are a music marketing agency dedicated to promoting and producing the best in independent music. Our brand ambassador program is a vital part of our mission to spread the love for music and help artists reach their full potential.
               </p>
               <p style={{ color: "#8b7aaa", fontSize: 13, lineHeight: 1.9, marginTop: 12 }}>
-                Are you passionate about music and culture? Do you love to express your unique style and share your passion with others? Then you're the perfect candidate to rep AMH.
+                Are you passionate about music and culture? Do you love to express your unique style and share your passion with others? Then you're the perfect candidate to rep Artists Musicians HUB.
               </p>
             </div>
             {/* Gallery mosaic */}

@@ -123,7 +123,7 @@ export default function ShopPage() {
             AMH CUFFED BEANIE — FIRST DROP
           </p>
           <p style={{ color: "#5b4a7a", fontSize: 11, marginBottom: 36 }}>
-            Official AMH merch is on the way. Beanies, tees, and more.
+            Official Artists Musicians HUB merch is on the way. Beanies, tees, and more.
           </p>
 
           {/* Teaser categories */}
