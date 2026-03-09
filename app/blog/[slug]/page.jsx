@@ -50,7 +50,7 @@ function ShareButtons({ title, slug }) {
 
   return (
     <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
-      <span style={{ fontSize: 9, letterSpacing: "0.2em", color: "#3d2060" }}>SHARE</span>
+      <span style={{ fontSize: 9, letterSpacing: "0.2em", color: "#5b4a7a" }}>SHARE</span>
       <a href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encoded}`} target="_blank" rel="noopener noreferrer"
         style={{ ...shareBtn, borderColor: "rgba(0,240,255,0.3)", color: "#00f0ff" }}>𝕏</a>
       <a href={`https://www.facebook.com/sharer/sharer.php?u=${encoded}`} target="_blank" rel="noopener noreferrer"
@@ -77,7 +77,7 @@ function RelatedPosts({ slug }) {
 
   return (
     <section style={{ padding: "40px 0", borderTop: "1px solid rgba(188,19,254,0.1)" }}>
-      <h3 style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 14, letterSpacing: "0.2em", color: "#5b4a7a", margin: "0 0 24px" }}>RELATED POSTS</h3>
+      <h3 style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 14, letterSpacing: "0.2em", color: "#e0d0ff", margin: "0 0 24px", textShadow: "0 0 10px rgba(188,19,254,0.2)" }}>RELATED POSTS</h3>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16 }}>
         {related.map(post => {
           const cat = CATEGORIES.find(c => c.id === post.category);
@@ -87,9 +87,9 @@ function RelatedPosts({ slug }) {
               background: "rgba(10,0,16,0.8)", border: "1px solid rgba(188,19,254,0.1)",
               padding: "20px 16px", transition: "all 0.3s",
             }}>
-              <span style={{ fontSize: 9, letterSpacing: "0.15em", color: cat?.color || "#5b4a7a" }}>{cat?.label}</span>
-              <h4 style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 12, color: "#a78bca", margin: "8px 0 6px", fontWeight: 400, lineHeight: 1.4 }}>{post.title}</h4>
-              <span style={{ fontSize: 9, color: "#3d2060" }}>{post.readTime} MIN READ</span>
+              <span style={{ fontSize: 9, letterSpacing: "0.15em", color: cat?.color || "#5b4a7a", textShadow: `0 0 6px ${(cat?.color || "#bc13fe")}55` }}>{cat?.label}</span>
+              <h4 style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: 12, color: "#e0d0ff", margin: "8px 0 6px", fontWeight: 400, lineHeight: 1.4 }}>{post.title}</h4>
+              <span style={{ fontSize: 9, color: "#5b4a7a" }}>{post.readTime} MIN READ</span>
             </a>
           );
         })}
@@ -117,7 +117,7 @@ function renderContent(content) {
           margin: "36px 0", display: "flex", alignItems: "center", gap: 12,
         }}>
           <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(188,19,254,0.25), transparent)" }} />
-          <span style={{ color: "#bc13fe", fontSize: 10, opacity: 0.4 }}>◈</span>
+          <span style={{ color: "#bc13fe", fontSize: 10, opacity: 0.5, textShadow: "0 0 6px rgba(188,19,254,0.4)" }}>◈</span>
           <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(188,19,254,0.25), transparent)" }} />
         </div>
       );
@@ -130,10 +130,10 @@ function renderContent(content) {
       elements.push(
         <div key={i} style={{
           margin: "28px 0", padding: "32px 20px", textAlign: "center",
-          background: "rgba(188,19,254,0.03)", border: "1px dashed rgba(188,19,254,0.15)",
+          background: "rgba(188,19,254,0.03)", border: "1px dashed rgba(188,19,254,0.2)",
         }}>
-          <div style={{ fontSize: 20, color: "#bc13fe", opacity: 0.25, marginBottom: 8 }}>◈</div>
-          <span style={{ fontSize: 10, letterSpacing: "0.15em", color: "#3d2060" }}>{desc || "IMAGE"}</span>
+          <div style={{ fontSize: 20, color: "#bc13fe", opacity: 0.35, marginBottom: 8, textShadow: "0 0 8px rgba(188,19,254,0.3)" }}>◈</div>
+          <span style={{ fontSize: 10, letterSpacing: "0.15em", color: "#5b4a7a" }}>{desc || "IMAGE"}</span>
         </div>
       );
       i++; continue;
@@ -143,9 +143,11 @@ function renderContent(content) {
     if (line.startsWith("## ")) {
       elements.push(
         <h2 key={i} style={{
-          fontFamily: "'Share Tech Mono', monospace", fontSize: 18, color: "#e0d0ff",
+          fontFamily: "'Share Tech Mono', monospace", fontSize: 18, color: "#ffffff",
           letterSpacing: "0.1em", margin: "36px 0 16px", fontWeight: 400, lineHeight: 1.3,
           borderLeft: "3px solid #bc13fe", paddingLeft: 16,
+          boxShadow: "inset 3px 0 8px rgba(188,19,254,0.3)",
+          textShadow: "0 0 10px rgba(188,19,254,0.2)",
         }}>{line.slice(3)}</h2>
       );
       i++; continue;
@@ -155,7 +157,7 @@ function renderContent(content) {
     if (line.startsWith("### ")) {
       elements.push(
         <h3 key={i} style={{
-          fontFamily: "'Share Tech Mono', monospace", fontSize: 15, color: "#a78bca",
+          fontFamily: "'Share Tech Mono', monospace", fontSize: 15, color: "#e0d0ff",
           letterSpacing: "0.08em", margin: "28px 0 12px", fontWeight: 400,
         }}>{line.slice(4)}</h3>
       );
@@ -262,7 +264,7 @@ export default function BlogPostPage() {
   if (!post) {
     return (
       <div style={{ background: "#0a0a0f", color: "#e0d0ff", fontFamily: "'Share Tech Mono', monospace", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: 24 }}>
-        <h1 style={{ fontSize: 48, color: "#bc13fe", margin: "0 0 16px" }}>404</h1>
+        <h1 style={{ fontSize: 48, color: "#bc13fe", margin: "0 0 16px", textShadow: "0 0 20px #bc13fe" }}>404</h1>
         <p style={{ color: "#5b4a7a", fontSize: 13, letterSpacing: "0.2em" }}>POST NOT FOUND</p>
         <a href="/blog" style={{ color: "#00f0ff", fontSize: 12, marginTop: 24, textDecoration: "none" }}>← BACK TO BLOG</a>
       </div>
@@ -283,16 +285,18 @@ export default function BlogPostPage() {
           opacity: v ? 1 : 0, transform: v ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease",
         }}>
           {/* Back link */}
-          <a href="/blog" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#3d2060", textDecoration: "none", display: "inline-block", marginBottom: 24 }}>
+          <a href="/blog" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#5b4a7a", textDecoration: "none", display: "inline-block", marginBottom: 24 }}>
             ← BACK TO BLOG
           </a>
 
           {/* Category badge */}
           <div style={{
             display: "inline-block", padding: "6px 16px", marginBottom: 20,
-            border: `1px solid ${cat?.color || "#bc13fe"}33`,
+            border: `1px solid ${cat?.color || "#bc13fe"}44`,
             fontSize: 9, letterSpacing: "0.25em", color: cat?.color || "#bc13fe",
             clipPath: "polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%)",
+            textShadow: `0 0 8px ${(cat?.color || "#bc13fe")}66`,
+            boxShadow: `0 0 10px ${(cat?.color || "#bc13fe")}15`,
           }}>{cat?.label}</div>
 
           {/* Title */}
@@ -311,7 +315,7 @@ export default function BlogPostPage() {
           </div>
 
           {/* Divider */}
-          <div style={{ height: 2, width: 60, margin: "28px auto 0", background: `linear-gradient(90deg, transparent, ${cat?.color || "#bc13fe"}, transparent)` }} />
+          <div style={{ height: 2, width: 60, margin: "28px auto 0", background: `linear-gradient(90deg, transparent, ${cat?.color || "#bc13fe"}, transparent)`, boxShadow: `0 0 10px ${(cat?.color || "#bc13fe")}88` }} />
         </header>
 
         {/* Featured image */}
@@ -338,7 +342,7 @@ export default function BlogPostPage() {
         <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 24px 60px" }}>
           <div style={{ borderTop: "1px solid rgba(188,19,254,0.1)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
             <ShareButtons title={post.title} slug={post.slug} />
-            <a href="/blog" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#3d2060", textDecoration: "none" }}>← ALL POSTS</a>
+            <a href="/blog" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#5b4a7a", textDecoration: "none" }}>← ALL POSTS</a>
           </div>
 
           <RelatedPosts slug={post.slug} />

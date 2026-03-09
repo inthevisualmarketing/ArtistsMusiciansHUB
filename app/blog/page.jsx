@@ -76,34 +76,35 @@ function PostCard({ post, index }) {
             <span style={{
               fontSize: 9, letterSpacing: "0.2em",
               color: cat?.color || "#bc13fe",
-              textShadow: hov ? `0 0 6px ${cat?.color || "#bc13fe"}55` : "none",
+              textShadow: `0 0 8px ${(cat?.color || "#bc13fe")}66`,
             }}>{cat?.label || post.category.toUpperCase()}</span>
-            <span style={{ fontSize: 9, letterSpacing: "0.1em", color: "#3d2060" }}>{formatDate(post.date)}</span>
+            <span style={{ fontSize: 9, letterSpacing: "0.1em", color: "#5b4a7a" }}>{formatDate(post.date)}</span>
           </div>
 
           {/* Title */}
           <h3 style={{
             fontFamily: "'Share Tech Mono', monospace",
             fontSize: 14, letterSpacing: "0.05em",
-            color: hov ? "#e0d0ff" : "#a78bca",
+            color: hov ? "#ffffff" : "#e0d0ff",
             margin: "0 0 8px", fontWeight: 400, lineHeight: 1.4,
             transition: "color 0.3s",
           }}>{post.title}</h3>
 
           {/* Excerpt */}
           <p style={{
-            fontSize: 12, color: "#5b4a7a", lineHeight: 1.6, margin: "0 0 12px",
+            fontSize: 12, color: "#8b7aaa", lineHeight: 1.6, margin: "0 0 12px",
             display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
           }}>{post.excerpt}</p>
 
           {/* Reading time + CTA */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontSize: 9, letterSpacing: "0.15em", color: "#3d2060" }}>
+            <span style={{ fontSize: 9, letterSpacing: "0.15em", color: "#5b4a7a" }}>
               {post.readTime} MIN READ
             </span>
             <span style={{
               fontSize: 9, letterSpacing: "0.15em",
-              color: hov ? (cat?.color || "#bc13fe") : "#3d2060",
+              color: hov ? (cat?.color || "#bc13fe") : "#5b4a7a",
+              textShadow: hov ? `0 0 6px ${(cat?.color || "#bc13fe")}55` : "none",
               transition: "color 0.3s",
             }}>READ →</span>
           </div>
@@ -185,9 +186,9 @@ export default function BlogPage() {
           {/* RSS link */}
           <a href="/blog/rss.xml" style={{
             display: "inline-flex", alignItems: "center", gap: 6, marginTop: 16,
-            fontSize: 10, letterSpacing: "0.2em", color: "#3d2060", textDecoration: "none",
+            fontSize: 10, letterSpacing: "0.2em", color: "#5b4a7a", textDecoration: "none",
           }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#3d2060"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#5b4a7a"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
             RSS FEED
           </a>
         </section>
@@ -205,6 +206,8 @@ export default function BlogPage() {
                 cursor: "pointer", fontFamily: "'Share Tech Mono', monospace",
                 clipPath: "polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%)",
                 transition: "all 0.2s",
+                textShadow: filter === "ALL" ? "0 0 8px rgba(188,19,254,0.5)" : "none",
+                boxShadow: filter === "ALL" ? "0 0 12px rgba(188,19,254,0.2)" : "none",
               }}
             >ALL</button>
             {CATEGORIES.map(cat => (
@@ -219,11 +222,13 @@ export default function BlogPage() {
                   cursor: "pointer", fontFamily: "'Share Tech Mono', monospace",
                   clipPath: "polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%)",
                   transition: "all 0.2s",
+                  textShadow: filter === cat.id ? `0 0 8px ${cat.color}66` : "none",
+                  boxShadow: filter === cat.id ? `0 0 12px ${cat.color}22` : "none",
                 }}
               >{cat.label}</button>
             ))}
           </div>
-          <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, letterSpacing: "0.2em", color: "#3d2060" }}>
+          <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, letterSpacing: "0.2em", color: "#5b4a7a" }}>
             {filtered.length} POST{filtered.length !== 1 ? "S" : ""}
           </div>
         </section>
