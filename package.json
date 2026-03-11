@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.35.1",
+    "gray-matter": "^4.0.3",
     "next": "16.1.6",
     "next-cloudinary": "^6.17.5",
     "react": "19.2.3",

@@ -1,6 +1,6 @@
-import { POSTS, CATEGORIES, formatDate } from "@/lib/blog-data";
+import { getAllPosts, CATEGORIES } from "@/lib/blog";
 
-const SITE_URL = "https://artistsmusicianshub.com";
+const SITE_URL = "https://www.artistsmusicianshub.com";
 const SITE_TITLE = "Artists Musicians HUB — Blog";
 const SITE_DESC = "Artist spotlights, growth tips, industry news, and updates from San Antonio's premier music marketing platform.";
 
@@ -14,7 +14,7 @@ function escapeXml(str: string) {
 }
 
 export async function GET() {
-  const sortedPosts = [...POSTS].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const sortedPosts = getAllPosts();
 
   const items = sortedPosts.map((post) => {
     const cat = CATEGORIES.find((c) => c.id === post.category);

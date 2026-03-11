@@ -1,4 +1,4 @@
-import { POSTS } from "@/lib/blog-data";
+import { getAllPosts } from "@/lib/blog";
 
 const SITE_URL = "https://www.artistsmusicianshub.com";
 
@@ -33,7 +33,7 @@ export async function GET() {
   </url>`
   ).join("\n");
 
-  const blogEntries = POSTS.map(
+  const blogEntries = getAllPosts().map(
     (post) => `  <url>
     <loc>${escapeXml(SITE_URL + "/blog/" + post.slug)}</loc>
     <lastmod>${post.date}</lastmod>
