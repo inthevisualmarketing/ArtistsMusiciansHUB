@@ -5,7 +5,7 @@ category: spotlight
 date: 2022-10-01
 readTime: 7
 excerpt: "From Milwaukee to San Antonio, Dai Made turns heartbreak into art. A singer, rapper, and creative who records from the heart — literally. Meet @Motivefromtheheart."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/daimade2.png
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/daimade2.png
 ---
 
 *#SupportLocalArtists*

@@ -5,7 +5,7 @@ category: spotlight
 date: 2023-01-31
 readTime: 10
 excerpt: "From deathcore bands in the Rio Grande Valley to melodic trap production in San Antonio. Oh It's Chris talks studio workflow, working with difficult artists, and why he'd do this for free."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/309860073_1090467918527233_8528524820240210101_n.jpg
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/309860073_1090467918527233_8528524820240210101_n.jpg
 ---
 
 *#SupportLocalArtists*

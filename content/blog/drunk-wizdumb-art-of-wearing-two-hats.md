@@ -5,7 +5,7 @@ category: spotlight
 date: 2026-03-01
 readTime: 5
 excerpt: "Producer. Recording artist. Drunk Wizdumb does both — and the 210 is paying attention. A look at how dual-role artists thrive in San Antonio's scene."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/wiz2.jpg
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/wiz2.jpg
 ---
 
 Some artists perform. Some produce. Drunk Wizdumb does both — and the balance between the two is what makes his work compelling.

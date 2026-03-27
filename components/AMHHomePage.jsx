@@ -884,12 +884,12 @@ function TierCard({ name, price, period, color, features, tag, elevated }) {
 
 // ---------- SECTION: TONE ZONE SPOTLIGHT ----------
 const ARTISTS = [
-  { name: "BxneYvrdBxyz", genre: "ALT RAP", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/B2FEAF5E-A0A0-470C-808C-6E0B110D9A1C.jpg", link: "https://www.instagram.com/bxneyvrdbxyz" },
-  { name: "Trevion500", genre: "R&B / LABEL OWNER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/photo_2025-08-25_21-42-03.jpg", link: "https://www.trevion500.net/" },
-  { name: "YungNygma", genre: "ALT RAP", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/attistspage2.jpg", link: "https://www.instagram.com/yungnygma" },
-  { name: "Mike Dimes", genre: "RAPPER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/mikedimes1edited.png", link: "https://www.mikedimesofficial.com/" },
-  { name: "Drunk Wizdumb", genre: "ARTIST & PRODUCER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/wiz2.jpg", link: "https://www.instagram.com/drunkwizdumb/" },
-  { name: "Oh It's Chris", genre: "PRODUCER", image: "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/309860073_1090467918527233_8528524820240210101_n.jpg", link: "https://www.instagram.com/oh_itschris" },
+  { name: "BxneYvrdBxyz", genre: "ALT RAP", image: "https://res.cloudinary.com/dbpremci4/image/fetch/w_300,h_300,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/B2FEAF5E-A0A0-470C-808C-6E0B110D9A1C.jpg", link: "https://www.instagram.com/bxneyvrdbxyz" },
+  { name: "Trevion500", genre: "R&B / LABEL OWNER", image: "https://res.cloudinary.com/dbpremci4/image/fetch/w_300,h_300,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/photo_2025-08-25_21-42-03.jpg", link: "https://www.trevion500.net/" },
+  { name: "YungNygma", genre: "ALT RAP", image: "https://res.cloudinary.com/dbpremci4/image/fetch/w_300,h_300,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/attistspage2.jpg", link: "https://www.instagram.com/yungnygma" },
+  { name: "Mike Dimes", genre: "RAPPER", image: "https://res.cloudinary.com/dbpremci4/image/fetch/w_300,h_300,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/mikedimes1edited.png", link: "https://www.mikedimesofficial.com/" },
+  { name: "Drunk Wizdumb", genre: "ARTIST & PRODUCER", image: "https://res.cloudinary.com/dbpremci4/image/fetch/w_300,h_300,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/wiz2.jpg", link: "https://www.instagram.com/drunkwizdumb/" },
+  { name: "Oh It's Chris", genre: "PRODUCER", image: "https://res.cloudinary.com/dbpremci4/image/fetch/w_300,h_300,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/309860073_1090467918527233_8528524820240210101_n.jpg", link: "https://www.instagram.com/oh_itschris" },
 ];
 
 function ToneZoneSection() {

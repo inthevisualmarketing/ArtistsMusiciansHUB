@@ -5,7 +5,7 @@ category: spotlight
 date: 2022-09-18
 readTime: 4
 excerpt: "R&B and hip-hop from San Antonio's North Eastside. Nakaki heard herself on a mic and knew — that's the one."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/302054798_1252720045484512_5959186148786625561_n.jpg
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/302054798_1252720045484512_5959186148786625561_n.jpg
 ---
 
 *#SupportLocalArtists*

@@ -5,7 +5,7 @@ category: spotlight
 date: 2026-03-05
 readTime: 6
 excerpt: "From San Antonio's Southside to building a sound that defies genre labels — how BxneYvrdBxyz is carving out a lane in alternative rap that's entirely his own."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/B2FEAF5E-A0A0-470C-808C-6E0B110D9A1C.jpg
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/B2FEAF5E-A0A0-470C-808C-6E0B110D9A1C.jpg
 ---
 
 BxneYvrdBxyz doesn't fit neatly into any box — and that's exactly the point.

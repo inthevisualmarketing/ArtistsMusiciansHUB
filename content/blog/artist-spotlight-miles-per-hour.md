@@ -5,7 +5,7 @@ category: spotlight
 date: 2023-01-10
 readTime: 7
 excerpt: "From playing drums in church to building a solo career in the 210. Miles Per Hour talks creative process, balancing a full-time job, and why his birthday bash at the HUB was his proudest moment."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/317698012_1145058849482403_8907681085994754992_n.jpg
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/317698012_1145058849482403_8907681085994754992_n.jpg
 ---
 
 *#SupportLocalArtists*

@@ -83,8 +83,8 @@ function NewsHero() {
 // ============================================================
 // ARTIST DATA — ALL 50+ from both galleries
 // ============================================================
-const D = "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/";
-const D2 = "https://irp-cdn.multiscreensite.com/4b2bab8b/dms3rep/multi/";
+const D = "https://res.cloudinary.com/dbpremci4/image/fetch/w_200,h_200,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/";
+const D2 = "https://res.cloudinary.com/dbpremci4/image/fetch/w_200,h_200,c_fill,g_face,q_auto,f_auto/https://irp-cdn.multiscreensite.com/4b2bab8b/dms3rep/multi/";
 
 const TONE_ZONE_ARTISTS = [
   // Active Tone Zone gallery
@@ -419,8 +419,8 @@ function BlogPlaceholder({ label, title, subtitle, tag }) {
 // ============================================================
 const FOOTER_NAV = [
   { section: "NAVIGATE", links: [{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Services", href: "/services" }] },
-  { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Submit Content", href: "/submit" }] },
-  { section: "CONNECT", links: [{ label: "Contact", href: "/contact" }, { label: "Blog", href: "/blog" }, { label: "Shop", href: "/shop" }] },
+  { section: "PROGRAMS", links: [{ label: "AMPLIFY", href: "/amplify" }, { label: "Tone Zone", href: "/news" }, { label: "Blog", href: "/blog" }] },
+  { section: "COMMUNITY", links: [{ label: "Ambassadors", href: "/ambassadors" }, { label: "Shop", href: "/shop" }, { label: "Contact", href: "/contact" }] },
 ];
 const SOCIALS = [{ label: "IG", icon: "◉", href: "#" }, { label: "YT", icon: "▶", href: "#" }, { label: "SP", icon: "●", href: "#" }, { label: "TW", icon: "◆", href: "#" }];
 

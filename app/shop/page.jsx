@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const LOGO_URL = "https://res.cloudinary.com/dbpremci4/image/upload/w_200,h_200,c_fit/white-hub-logo-transparent";
-const BEANIE_IMG = "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/cuffed-beanie-white-front-63e78d6e95a7e.jpg";
+const BEANIE_IMG = "https://res.cloudinary.com/dbpremci4/image/fetch/w_500,h_500,c_fill,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/cuffed-beanie-white-front-63e78d6e95a7e.jpg";
 const GRID_SIZE = 40;
 
 function ElectricGrid() {

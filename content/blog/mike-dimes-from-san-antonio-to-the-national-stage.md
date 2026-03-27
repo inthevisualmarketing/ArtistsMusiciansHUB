@@ -5,7 +5,7 @@ category: spotlight
 date: 2026-02-20
 readTime: 7
 excerpt: "How one of SA's most promising rappers went from local shows to national recognition — and what it means for the 210's rap ecosystem."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/mikedimes1edited.png
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/mikedimes1edited.png
 ---
 
 Mike Dimes is proof that San Antonio can produce nationally competitive rap talent.

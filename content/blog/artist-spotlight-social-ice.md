@@ -5,7 +5,7 @@ category: spotlight
 date: 2023-01-14
 readTime: 7
 excerpt: "Social Ice watched Travis Scott move 80,000 people and thought 'I can do this too.' From quarantine rapper to 100K streams on Roll The Dice."
-image: https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/socialice2sizedenhanced.png
+image: https://res.cloudinary.com/dbpremci4/image/fetch/w_800,h_400,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/socialice2sizedenhanced.png
 ---
 
 *#SupportLocalArtists*
