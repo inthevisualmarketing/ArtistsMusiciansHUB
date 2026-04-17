@@ -83,8 +83,8 @@ function NewsHero() {
 // ============================================================
 // ARTIST DATA — ALL 50+ from both galleries
 // ============================================================
-const D = "https://res.cloudinary.com/dbpremci4/image/fetch/w_200,h_200,c_fill,g_face,q_auto,f_auto/https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/";
-const D2 = "https://res.cloudinary.com/dbpremci4/image/fetch/w_200,h_200,c_fill,g_face,q_auto,f_auto/https://irp-cdn.multiscreensite.com/4b2bab8b/dms3rep/multi/";
+const D = "https://irp.cdn-website.com/4b2bab8b/dms3rep/multi/";
+const D2 = "https://irp-cdn.multiscreensite.com/4b2bab8b/dms3rep/multi/";
 
 const TONE_ZONE_ARTISTS = [
   // Active Tone Zone gallery

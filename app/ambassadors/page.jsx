@@ -30,10 +30,10 @@ const PERKS = [
 ];
 
 const GALLERY_IMAGES = [
-  "https://res.cloudinary.com/dbpremci4/image/fetch/w_400,h_400,c_fill,q_auto,f_auto/https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-2072454.jpeg",
-  "https://res.cloudinary.com/dbpremci4/image/fetch/w_400,h_400,c_fill,q_auto,f_auto/https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-2363821.jpeg",
-  "https://res.cloudinary.com/dbpremci4/image/fetch/w_400,h_400,c_fill,q_auto,f_auto/https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-14565976.jpeg",
-  "https://res.cloudinary.com/dbpremci4/image/fetch/w_400,h_400,c_fill,q_auto,f_auto/https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-2406549.jpeg",
+  "https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-2072454.jpeg",
+  "https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-2363821.jpeg",
+  "https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-14565976.jpeg",
+  "https://irp.cdn-website.com/md/pexels/dms3rep/multi/pexels-photo-2406549.jpeg",
 ];
 
 // ============================================================
